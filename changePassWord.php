@@ -38,7 +38,7 @@
             font-size: 14px;
         }
         body{
-            background-image: url('/images/bg_1.avif') ;
+            background-image: url('images/bg_1.avif') ;
             background-repeat: no-repeat;
             background-size: cover;
         }

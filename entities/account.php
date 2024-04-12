@@ -25,6 +25,31 @@ public static function checkLogin($email,$password){
     $result=$db->query_execute($sql);
     return $result;
 }
+public static function get_username($id, $code)
+{
+    try {
+        $db = new Db();
+    $sql = "CALL get_username('$id','$code');";
+    $result = $db->select_to_array($sql);
+    $result = $result[0]['username'];
+    return $result;
+    }
+    catch (PDOException $e) {
+        return false;
+    }
+}
+public static function get_id($username){
+    try {
+    $db=new Db();
+    $sql="SELECT * FROM Login WHERE username='$username';";
+    $result = $db->select_to_array($sql);
+    $result = $result[0]['id'];
+    return $result;
+    }
+    catch (PDOException $e) {
+        return false;
+    }
+}
 }
 
 

@@ -25,7 +25,9 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -145,36 +147,30 @@
 					<div class="col-md-12 col-md-offset-0">
 						<div class="row">
 							<div class="col-md-4 animate-box">
-								<h3>Thông tin liên hệ</h3>
+								<h3>Thông tin </h3>
 								<ul class="contact-info">
 									<li><span><i class="icon-map5"></i></span>123/45 Quận 9 TP HCM</li>
 									<li><span><i class="icon-phone4"></i></span>24352345</li>
 									<li><span><i class="icon-envelope2"></i></span><a href="#">DzoanXuanThanh@gmail.com</a></li>
 								</ul>
 							</div>
-							<div class="col-md-7 col-md-push-1 animate-box">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Name">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Email">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="submit" value="Send Message" class="btn btn-primary">
-										</div>
-									</div>
-								</div>
+							<div class="col-md-4 animate-box">
+								<h3>Mạng xã hội</h3>
+								<ul class="contact-info">
+								<li><span><i class="fab fa-facebook"></i></span><a href="#">Facebook</a></li>
+								<li><span><i class="fab fa-instagram"></i></span><a href="#">Instagram</a></li>
+								<li><span><i class="fab fa-linkedin"></i></span><a href="#">LinkedIn</a></li>
+
+								</ul>
+							</div>
+							<div class="col-md-4 animate-box">
+							<h3>Giờ làm việc</h3>
+							<ul  class="contact-info">
+								<li >Thứ 2 </li>
+								<li>Thứ 3</li>
+								<li>Thứ 4</li>
+								
+							</ul>
 							</div>
 							
 							 

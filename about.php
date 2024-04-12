@@ -158,33 +158,33 @@
 										<div class="col-md-6">
 
 											<div class="form-group">
-												<input type="text" class="form-control" class="name" placeholder="Tên giảng viên">
+												<input type="text" class="form-control" name="name" placeholder="Tên giảng viên">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="text" class="form-control" class="introduce" placeholder="Giới thiệu công việc">
+												<input type="text" class="form-control" name="linkedin" placeholder="Link linkedin">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="text" class="form-control" class="" placeholder=" Giới thiệu về bản thân">
+												<input type="text" class="form-control" name="integram" placeholder=" Link integram">
 												
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="text" class="form-control" class="address" placeholder="Địa chỉ">
+												<input type="text" class="form-control" name="address" placeholder="Địa chỉ">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="text" class="form-control" class="email" placeholder="Email">
+												<input type="text" class="form-control" name="email" placeholder="Email">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="text" class="form-control" class="phone" placeholder="Số điện thoại">
+												<input type="text" class="form-control" name="phone" placeholder="Số điện thoại">
 											</div>
 										</div>
 										<div class="col-md-6">

@@ -1,9 +1,50 @@
+<?php
+require_once("entities/detail.class.php");
+require_once("entities/account.php");
+
+session_start();
+if(isset($_SESSION['username'])){
+	$email=$_SESSION['username'];
+}
+if($email===""){
+	$error_message="không thể thêm tài liệu";
+}
+$id=User::get_id($email);
+if(!isset($id)){
+	$error_message="không thể thêm tài liệu";
+}
+if(isset($_POST['enter'])){
+	$subjectName=$_POST['subjectName'];
+	$detailName=$_POST['detailName'];
+	$txt_image=$_POST['txt_image'];
+	$txt_file=$_POST['txt_file'];
+	if (!$subjectName || !$detailName || !$txt_image || !$txt_file) {
+        echo '<script>alert("Vui lòng nhập đầy đủ thông tin.");</script>';
+    } 
+	else{
+	$newDetail= new Detail($subjectName,$detailName,$txt_image,$txt_file,$id);
+	$result=$newDetail->save();
+	if(isset($result)){
+		if(!$result){
+			echo '<script>alert("không thêm được!")</script>';
+		}
+		else{
+			echo '<script>alert("Thêm thành công!")</script>';
+		}
+	
+	}
+	}
+}
+
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Noah Template</title>
+	<title>Giảng viên</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -41,6 +82,10 @@
 	<link rel="stylesheet" href="css/style.css">
 
 		<style>
+		.errorMessage{
+            color: rgb(216, 49, 49);
+            font-size: 14px;
+        }
 			#login{
 			border: 3px solid  rgb(189, 158, 65);
 			padding: 6px 8px;
@@ -146,28 +191,34 @@
 		<div class="container">
 			<div class="body-form row justify-content-center">
 				<div class="col-md-6">
-					<form action="" class="border p-3 rounded " id="login">
+					<form action="" class="border p-3 rounded " id="login" method="post" >
 						<div class="form-group">
 							<label for="subjectName">Tên môn học</label>
-							<input type="text" class="form-control mt-1 mb-1" id="subjectName" placeholder="Nhập tên môn học" name="subjectName">
+							<input type="text" class="form-control mt-1 mb-1" id="subjectName" placeholder="Nhập tên môn học" name="subjectName" >
 						</div>
 						<div class="form-group">
 							<label for="detailName">Miêu tả Môn học</label>
-							<input type="text" class="form-control mt-1 mb-1" id="detailName" placeholder="Nhập miêu tả tài liệu" name="detailName">
+							<textarea type="text" class="form-control mt-1 mb-1" id="detailName" placeholder="Nhập miêu tả tài liệu" name="detailName" ></textarea>
 						</div>
 						<div>
 							<label for="txt_image" class="text_title">Ảnh</label>
 						</div>
 						<div>
-							<input type="file" name="txt_image" id="txt_image" accept=".PNG,.GIF,.JPG,.JPEG">
+							<input type="file" name="txt_image" id="txt_image" accept=".PNG,.GIF,.JPG,.JPEG" >
 						</div>
 						<div>
 							<label for="txt_file" class="text_title">Chọn Tệp</label>
 						</div>
 						<div>
-							<input type="file" name="txt_file" id="txt_file" accept=".doc,.docx,.pdf,.txt,.zip,.rar,.7z,.jpg,.png,.gif">
+							<input type="file" name="txt_file" id="txt_file" accept=".doc,.docx,.pdf,.txt,.zip,.rar,.7z,.jpg,.png,.gif"  >
 						</div>
-						<button class="btnLogin mt-2 login" type="submit" class="btn" onclick="LoginSubmit(event)" >Thêm</button>
+						<div class="d-none errorMessage my-3"></div>
+						<?php
+						if(isset($error_message)){
+                        echo "<p class='errorMessage my-3'>$error_message</p>";
+                    		}
+                    	?>
+						<button class="btnLogin mt-2 login" type="submit" class="btn" name="enter" >Thêm</button>
 						
 					</form>
 				</div>
@@ -254,6 +305,8 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
+
+
 
 	</body>
 </html>

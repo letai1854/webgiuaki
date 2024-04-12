@@ -17,7 +17,7 @@ $halfmail2 = file_get_contents('halfmail2.html');
 
 
 
-$message = file_get_contents('halfmail1.html') . 'http://localhost/WebGiuaKi/changePassWord.php' . '?id=' . $id . '&code=' . $code . file_get_contents('halfmail2.html');
+$message = file_get_contents('halfmail1.html') . 'http://localhost/WebGiangVien/changePassWord.php' . '?id=' . $id . '&code=' . $code . file_get_contents('halfmail2.html');
 $subject = "RECOVERY PASSWORD FOR WEBSITE";
   mail_service::send_mail($username, $subject, $message);
   return true;
