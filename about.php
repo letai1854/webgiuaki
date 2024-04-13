@@ -1,4 +1,7 @@
 <?php 
+require_once("entities/detail.class.php");
+require_once("entities/account.php");
+
 session_start();
 if(isset($_SESSION['username'])){
 	$owner=true;
@@ -246,9 +249,7 @@ else{
 										<p><a href="#" style="color: black">DzoanXuanThanh@gmal.com</a></p>
 										<p class="colorlib-social-icons">
 											<a href="#"  ><i class="icon-facebook"></i></a>
-										
 											<a href="#"><i class="icon-google"></i></a>
-											
 										</p>
 									</div>
 								</div>

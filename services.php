@@ -1,4 +1,3 @@
-
 <?php 
 require_once("entities/detail.class.php");
 require_once("entities/account.php");
@@ -11,7 +10,7 @@ else{
 }
 if(isset($_POST['Delete'])){
 	$id=$_POST['Id'];
-	$result =Detail::delete_Subject($id);
+	$result = Detail::delete_Subject($id);
 }
 
 try {

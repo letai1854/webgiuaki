@@ -42,10 +42,7 @@ if(isset($_POST['enter'])){
 		}
 		else{
 			echo '<script>alert("Thêm thành công!")</script>';
-			
-		// }
-	
-	}
+		}
 	}
 }
 else if(isset($_POST['submit_update'])){
@@ -178,8 +175,8 @@ else if(isset($_POST['submit_update'])){
 							if($owner){
 								echo '<li><a href="work.php" style="color: rgb(200, 210, 219);">Thêm tài liệu</a></li>';
 								echo'<li><a href="about.php" style="color: rgb(200, 210, 219);">Cập nhật thông tin</a></li>'; 
-							 }
-							 ?>
+							}
+							?>
 							<li><a href="contact.php" style="color: rgb(200, 210, 219);">Liên hệ</a></li>
 							</ul>
 						</div>
@@ -354,8 +351,8 @@ else if(isset($_POST['submit_update'])){
         function validate(){
 			var name= document.querySelector('#subjectName').value;
 			var detail= document.querySelector('#detailName').value;
-           var file= document.querySelector('#txt_file').value;
-           var image =document.querySelector('#txt_image').value;
+           	var file= document.querySelector('#txt_file').value;
+           	var image =document.querySelector('#txt_image').value;
             var isvalid=true;
 			if(name===""){
                 showError('Vui lòng chọn tệp');
@@ -382,8 +379,6 @@ else if(isset($_POST['submit_update'])){
             }
 
         }
-
-
     </script>
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
@@ -401,9 +396,6 @@ else if(isset($_POST['submit_update'])){
 
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
-
-
-
 	</body>
 </html>
 
