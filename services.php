@@ -1,3 +1,26 @@
+
+<?php 
+require_once("entities/detail.class.php");
+require_once("entities/account.php");
+session_start();
+if(isset($_SESSION['username'])){
+	$owner=true;
+}
+else{
+	$owner=false;
+}
+if(isset($_POST['Delete'])){
+	$id=$_POST['Id'];
+	$result =Detail::delete_Subject($id);
+}
+
+try {
+	$list_subject = Detail::list_Detail();
+} catch (Exception $e) {
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -71,13 +94,16 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul>
-							<li><a href="/login.html" class="login-link" style="color: rgb(200, 210, 219);">Đăng nhập</a></li>
+							<li><a href="login.php" class="login-link" style="color: rgb(200, 210, 219);">Đăng nhập</a></li>
 							<li class="active"><a href="index.html" style="color: rgb(200, 210, 219);">Giới thiệu</a></li>
-							<li><a href="services.html"style="color: rgb(200, 210, 219);">Tài liệu</a></li>
-							<li><a href="work.html"style="color: rgb(200, 210, 219);">Thêm tài liệu</a></li>
-							 <!-- <li><a href="blog.html">Blog</a></li> -->
-							<li><a href="about.html"style="color: rgb(200, 210, 219);">Cập nhật thông tin</a></li> 
-							<li><a href="contact.html"style="color: rgb(200, 210, 219);">Liên hệ</a></li>
+							<li><a href="services.php"style="color: rgb(200, 210, 219);">Tài liệu</a></li>
+							<?php 
+							if($owner){
+								echo '<li><a href="work.php" style="color: rgb(200, 210, 219);">Thêm tài liệu</a></li>';
+								echo'<li><a href="about.php" style="color: rgb(200, 210, 219);">Cập nhật thông tin</a></li>'; 
+							 }
+							 ?>
+							<li><a href="contact.php"style="color: rgb(200, 210, 219);">Liên hệ</a></li>
 						</ul>
 					</div>
 				</div>
@@ -136,93 +162,51 @@
 											<div class="row">
 												<div class="album py-5 bg-light">
 													<div class="container">
-														<!-- <div class="col" style="margin-bottom: 20px; border-radius:3px; border: 2px solid rgba(201, 197, 190, 0.337); padding: 10px; background-color: rgba(116, 83, 7, 0.575);">
-															<h3 style="color: rgb(184, 68, 26);">Lập trình hướng đối tượng</h3>
-															<div class="card shadow-sm">
-																<img src="./images/bg_1.avif" alt="" style="width:100%; height:300px ">
-																<div class="card-body">
-																	<h4 style="color: black; margin-top: 8px; text-decoration: none; font-weight: 600;">Mô Tả</h4>
-																	<p class="card-text" style="color: black;">Lập trình web và ứng dụng .</p>
-																	<div class="d-flex justify-content-between align-items-center">
-																		<div class="btn-group">
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(213, 198, 101); border-radius: 3px;">Xóa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(36, 36, 153); border-radius: 3px;">Sửa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(32, 115, 40); border-radius: 3px;">Tải tài liệu</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="col" style="margin-bottom: 20px; border-radius:3px; border: 2px solid rgba(201, 197, 190, 0.337); padding: 10px; background-color: rgba(116, 83, 7, 0.575);">
-															<h3 style="color: rgb(184, 68, 26);">Lập trình hướng đối tượng</h3>
-															<div class="card shadow-sm">
-																<img src="./images/bg_1.avif" alt="" style="width:100%; height:300px ">
-																<div class="card-body">
-																	<h4 style="color: black; margin-top: 8px; text-decoration: none; font-weight: 600;">Mô Tả</h4>
-																	<p class="card-text" style="color: black;">Lập trình web và ứng dụng .</p>
-																	<div class="d-flex justify-content-between align-items-center">
-																		<div class="btn-group">
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(213, 198, 101); border-radius: 3px;">Xóa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(36, 36, 153); border-radius: 3px;">Sửa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(32, 115, 40); border-radius: 3px;">Tải tài liệu</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="col" style="margin-bottom: 20px; border-radius:3px; border: 2px solid rgba(201, 197, 190, 0.337); padding: 10px; background-color: rgba(116, 83, 7, 0.575);">
-															<h3 style="color: rgb(184, 68, 26);">Lập trình hướng đối tượng</h3>
-															<div class="card shadow-sm">
-																<img src="./images/bg_1.avif" alt="" style="width:100%; height:300px ">
-																<div class="card-body">
-																	<h4 style="color: black; margin-top: 8px; text-decoration: none; font-weight: 600;">Mô Tả</h4>
-																	<p class="card-text" style="color: black;">Lập trình web và ứng dụng .</p>
-																	<div class="d-flex justify-content-between align-items-center">
-																		<div class="btn-group">
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(213, 198, 101); border-radius: 3px;">Xóa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(36, 36, 153); border-radius: 3px;">Sửa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(32, 115, 40); border-radius: 3px;">Tải tài liệu</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div> -->
-														<!-- <div class="col" style="margin-bottom: 20px; border-radius:3px; border: 2px solid rgba(201, 197, 190, 0.337); padding: 10px; background-color: rgba(116, 83, 7, 0.575);">
-															<h3 style="color: rgb(184, 68, 26);">Lập trình hướng đối tượng</h3>
-															<div class="card shadow-sm">
-																<img src="./images/bg_1.avif" alt="" style="width:100%; height:300px ">
-																<div class="card-body">
-																	<h4 style="color: black; margin-top: 8px; text-decoration: none; font-weight: 600;">Mô Tả</h4>
-																	<p class="card-text" style="color: black;">Lập trình web và ứng dụng .</p>
-																	<div class="d-flex justify-content-between align-items-center">
-																		<div class="btn-group">
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(213, 198, 101); border-radius: 3px;">Xóa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(36, 36, 153); border-radius: 3px;">Sửa</button>
-																			<button type="button" class="btn btn-sm" style="background-color: rgb(32, 115, 40); border-radius: 3px;">Tải tài liệu</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div> -->
-														
-														
-														
-														
-														
 												
-													
-													
-														
-														
-												
+													<?php
+               					 require_once('cell_detail.php');
+               									 if (isset($list_subject)) {
+													if (is_array($list_subject)) {
+														foreach ($list_subject as $item) {
+															echo '
+															<div class="col" style="margin-bottom: 20px; border-radius: 3px; border: 2px solid rgba(201, 197, 190, 0.337); padding: 10px; background-color: rgba(116, 83, 7, 0.575);">
+																<h3 style="color: rgb(184, 68, 26);">' . htmlspecialchars($item['subjectName']) . '</h3>
+																<div class="card shadow-sm">
+																	<img src="' . htmlspecialchars($item['image']) . '" alt="" style="width:100%; height:300px">
+																	<div class="card-body">
+																		<h4 style="color: black; margin-top: 8px; text-decoration: none; font-weight: 600;">Mô Tả</h4>
+																		<p class="card-text" style="color: black;">' . htmlspecialchars($item['subjectDescribe']) . '</p>
+																		<div class="d-flex justify-content-between align-items-center">
+																			<div class="btn-group">';
 																
-																		 
-														
-														
-												
-													
-												
-											</div>
+																// Kiểm tra quyền sở hữu để hiển thị các nút Xóa và Sửa
+																if ($owner) {
+																	echo '
+																	<button type="button" class="btn btn-sm" style="background-color: rgb(213, 198, 101); border-radius: 3px;" name="deletebtn" onclick="update_btn(\'' . htmlspecialchars($item['subjectCode']) . '\')">Sửa</button>
+																	<button type="button" class="btn btn-sm" style="background-color: rgb(36, 36, 153); border-radius: 3px;" name="updatebtn" onclick="delete_btn(\'' . htmlspecialchars($item['subjectCode']) . '\')">Xóa</button>';
+																}
+																$url=htmlspecialchars($item['file']) ;
+																$file_name = basename($url); 
+																// <button type="button" class="btn btn-sm" style="background-color: rgb(32, 115, 40); border-radius: 3px;">
+																// <a href="' . htmlspecialchars($item['file']) . '" style="color: white; text-decoration: none;">Tải tài liệu</a>
+																// </button>';
+																// // Nút tải tài liệu
+																
+																echo '
+																<button type="button" class="btn btn-sm" style="background-color: rgb(32, 115, 40); border-radius: 3px;">
+																<a href="' . htmlspecialchars($item['file']) .'"download="' .htmlspecialchars($file_name).'" style="color: white; text-decoration: none;">Tải tài liệu</a>
+																</button>';
+																echo '
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>';
+														}
+													}
+												}
+												?> 
+										</div>
 												
 										</div>
 									</div>
@@ -302,8 +286,52 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chú
 			</div>
 		</div>
 	</footer>
-	
 
+
+<script>
+	    function update_btn(id) {
+			var idstr = id.toString();
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "work.php");
+
+            var id = document.createElement("input");
+            id.setAttribute("type", "text");
+            id.setAttribute("name", "Id");
+            id.setAttribute("value", '' + idstr);
+
+            var btn = document.createElement("button");
+            btn.setAttribute("type", "submit");
+            btn.setAttribute("name", "Update");
+            form.appendChild(id);
+            form.appendChild(btn);
+            document.getElementsByTagName("body")[0]
+                .appendChild(form);
+            btn.click();
+    }
+function delete_btn(id) {
+        if (confirm('Do you want to delete this Subject: ' + id + '?') == true) {
+            var idstr = id.toString();
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "");
+
+            var id = document.createElement("input");
+            id.setAttribute("type", "text");
+            id.setAttribute("name", "Id");
+            id.setAttribute("value", '' + idstr);
+
+            var btn = document.createElement("button");
+            btn.setAttribute("type", "submit");
+            btn.setAttribute("name", "Delete");
+            form.appendChild(id);
+            form.appendChild(btn);
+            document.getElementsByTagName("body")[0]
+                .appendChild(form);
+            btn.click();
+        }
+    }
+</script>
 		
 	
 	

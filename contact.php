@@ -1,3 +1,15 @@
+<?php 
+session_start();
+if(isset($_SESSION['username'])){
+	$owner=true;
+}
+else{
+	$owner=false;
+}
+
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -85,9 +97,12 @@
 							<li><a href="login.php" class="login-link" style="color: rgb(200, 210, 219);">Đăng nhập</a></li>
 							<li class="active"><a href="index.php" style="color: rgb(200, 210, 219);">Giới thiệu</a></li>
 							<li><a href="services.php" style="color: rgb(200, 210, 219);">Tài liệu</a></li>
-							<li><a href="work.php" style="color: rgb(200, 210, 219);">Thêm tài liệu</a></li>
-							 <!-- <li><a href="blog.html">Blog</a></li> -->
-							<li><a href="about.php" style="color: rgb(200, 210, 219);">Cập nhật thông tin</a></li> 
+							<?php 
+							if($owner){
+								echo '<li><a href="work.php" style="color: rgb(200, 210, 219);">Thêm tài liệu</a></li>';
+								echo'<li><a href="about.php" style="color: rgb(200, 210, 219);">Cập nhật thông tin</a></li>'; 
+							 }
+							 ?>
 							<li><a href="contact.php" style="color: rgb(200, 210, 219);">Liên hệ</a></li>
 							</ul>
 						</div>

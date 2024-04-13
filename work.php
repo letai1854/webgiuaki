@@ -9,18 +9,29 @@ if(isset($_SESSION['username'])){
 if($email===""){
 	$error_message="không thể thêm tài liệu";
 }
+if(isset($_SESSION['username'])){
+	$owner=true;
+}
 $id=User::get_id($email);
 if(!isset($id)){
 	$error_message="không thể thêm tài liệu";
 }
+if(isset($_POST['Update'])){
+	try {
+		$_SESSION['i']=Detail::list_Subject_Update($_POST['Id']);
+		$subject_update = $_SESSION['i'];
+		$update = true;
+	} catch (Exception $e) {
+	}
+}
 if(isset($_POST['enter'])){
 	$subjectName=$_POST['subjectName'];
 	$detailName=$_POST['detailName'];
-	$txt_image=$_POST['txt_image'];
-	$txt_file=$_POST['txt_file'];
+	$txt_image=$_FILES['txt_image'];
+	$txt_file=$_FILES['txt_file'];
 	if (!$subjectName || !$detailName || !$txt_image || !$txt_file) {
-        echo '<script>alert("Vui lòng nhập đầy đủ thông tin.");</script>';
-    } 
+		echo '<script>alert("Vui lòng nhập đầy đủ thông tin.");</script>';
+	} 
 	else{
 	$newDetail= new Detail($subjectName,$detailName,$txt_image,$txt_file,$id);
 	$result=$newDetail->save();
@@ -30,11 +41,42 @@ if(isset($_POST['enter'])){
 		}
 		else{
 			echo '<script>alert("Thêm thành công!")</script>';
+		
+				$again = true;
+			
 		}
 	
 	}
 	}
 }
+else if(isset($_POST['submit_update'])){
+	$id = $_POST['submit_update'];
+	$name = $_POST['subjectName'];
+	$des = $_POST['detailName'];
+	$pic = $_FILES['txt_image'];
+	$file = $_FILES['txt_file'];
+	if ($name===""  || $des==="" || $pic==="" || $file==="") {
+			
+			echo '<script>alert("Vui lòng nhập đầy đủ thông tin.");</script>';
+			$update = true;
+			$again = true;
+	} 
+	else{		
+	$result = Detail::update_subject($id,$name,$des,$pic,$file);
+		if ($result == true) {
+			echo "<script>alert('Sửa thành công!');</script>";
+		} else {
+			echo "<script>alert('Sửa thất bại!');</script>";
+			$again = true;
+		}
+	}
+}
+else{
+	$owner=false;
+}
+
+
+
 
 
 ?>
@@ -135,9 +177,12 @@ if(isset($_POST['enter'])){
 							<li><a href="login.php" class="login-link" style="color: rgb(200, 210, 219);">Đăng nhập</a></li>
 							<li class="active"><a href="index.php" style="color: rgb(200, 210, 219);">Giới thiệu</a></li>
 							<li><a href="services.php" style="color: rgb(200, 210, 219);">Tài liệu</a></li>
-							<li><a href="work.php" style="color: rgb(200, 210, 219);">Thêm tài liệu</a></li>
-							 <!-- <li><a href="blog.html">Blog</a></li> -->
-							<li><a href="about.php" style="color: rgb(200, 210, 219);">Cập nhật thông tin</a></li> 
+							<?php 
+							if($owner){
+								echo '<li><a href="work.php" style="color: rgb(200, 210, 219);">Thêm tài liệu</a></li>';
+								echo'<li><a href="about.php" style="color: rgb(200, 210, 219);">Cập nhật thông tin</a></li>'; 
+							 }
+							 ?>
 							<li><a href="contact.php" style="color: rgb(200, 210, 219);">Liên hệ</a></li>
 							</ul>
 						</div>
@@ -177,12 +222,12 @@ if(isset($_POST['enter'])){
 		<div id="colorlib-work">
 			<div class="container">
 				<div class="row text-center">
-					<h2 class="bold" style="color: rgba(148, 154, 71, 0.495);">Thêm Tài Liệu</h2>
+					<h2 class="bold" style="color: rgba(148, 154, 71, 0.495);"> <?php if (isset($update)) echo 'Sửa Tài Liệu'; else echo 'Thêm Tài Liệu'?></h2>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-md-offset-0 text-center animate-box intro-heading">
 						<span  style="color: rgba(67, 70, 16, 0.874)">Giảng Viên</span>
-						<h2 style="color: rgba(67, 70, 16, 0.874)">Thêm Tài Liệu</h2>
+						<h2 style="color: rgba(67, 70, 16, 0.874)"><?php if (isset($update)) echo 'Sửa Tài Liệu'; else echo 'Thêm Tài Liệu'?></h2>
 					</div>
 				</div>
 				
@@ -191,26 +236,30 @@ if(isset($_POST['enter'])){
 		<div class="container">
 			<div class="body-form row justify-content-center">
 				<div class="col-md-6">
-					<form action="" class="border p-3 rounded " id="login" method="post" >
+					<form action="" class="border p-3 rounded " id="login" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="subjectName">Tên môn học</label>
-							<input type="text" class="form-control mt-1 mb-1" id="subjectName" placeholder="Nhập tên môn học" name="subjectName" >
+							<input type="text" class="form-control mt-1 mb-1" id="subjectName" placeholder="Nhập tên môn học" name="subjectName" value="<?php if (isset($again)) echo $name;
+                                                                                                                                        else if (isset($update)) echo $subject_update[0]['subjectName']; ?>">
 						</div>
 						<div class="form-group">
 							<label for="detailName">Miêu tả Môn học</label>
-							<textarea type="text" class="form-control mt-1 mb-1" id="detailName" placeholder="Nhập miêu tả tài liệu" name="detailName" ></textarea>
+							<textarea type="text"  id="detailName" placeholder="Nhập miêu tả tài liệu" class="form-control" name="detailName" value="<?php if (isset($again)) echo $des;
+                                                                                                                                                else if (isset($update)) echo $subject_update[0]['subjectDescribe']; ?>"></textarea>
 						</div>
 						<div>
 							<label for="txt_image" class="text_title">Ảnh</label>
 						</div>
 						<div>
-							<input type="file" name="txt_image" id="txt_image" accept=".PNG,.GIF,.JPG,.JPEG" >
+							<input type="file" name="txt_image" id="txt_image" accept=".PNG,.GIF,.JPG,.JPEG" value="<?php if (isset($again)) echo $pic;
+                                                                                                                                        else if (isset($update)) echo $subject_update[0]['image']; ?>">
 						</div>
 						<div>
 							<label for="txt_file" class="text_title">Chọn Tệp</label>
 						</div>
 						<div>
-							<input type="file" name="txt_file" id="txt_file" accept=".doc,.docx,.pdf,.txt,.zip,.rar,.7z,.jpg,.png,.gif"  >
+							<input type="file" name="txt_file" id="txt_file" accept=".doc,.docx,.pdf,.txt,.zip,.rar,.7z,.jpg,.png,.gif"  value="<?php if (isset($again)) echo $file;
+                                                                                                                                        else if (isset($update)) echo $subject_update[0]['file']; ?>">
 						</div>
 						<div class="d-none errorMessage my-3"></div>
 						<?php
@@ -218,8 +267,9 @@ if(isset($_POST['enter'])){
                         echo "<p class='errorMessage my-3'>$error_message</p>";
                     		}
                     	?>
-						<button class="btnLogin mt-2 login" type="submit" class="btn" name="enter" >Thêm</button>
-						
+						<button class="btnLogin mt-2 login" type="submit" class="btn" name="<?php echo isset($update) ? 'submit_update" value="' . htmlspecialchars($subject_update[0]['subjectCode']) . '">Sửa' : 'enter">Thêm'; ?>
+</button>
+
 					</form>
 				</div>
 	
