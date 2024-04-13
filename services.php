@@ -18,6 +18,16 @@ try {
 } catch (Exception $e) {
 }
 
+if(isset($_SESSION['username'])) {
+	$info = User::get_info($_SESSION['username']);
+	$email = $info[0]['email'];
+	$address = $info[0]['address'];
+	$phone = $info[0]['phone'];
+	$facebook = $info[0]['facebook'];
+	$linkedin = $info[0]['linkedin'];
+} 
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -229,62 +239,61 @@ try {
 
 	
 	<footer>
-		<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-pb-sm">
-						<div class="row">
-							<div class="col-md-10">
-								<h2>Hãy trò chuyện</h2>
-								<p style="color: rgb(67, 65, 65);">Đôi khi, những thay đổi nhỏ nhất có thể tạo ra sự khác biệt lớn nhất.</p>
-								<p><a href="#" style="color: black">DzoanXuanThanh@gmal.com</a></p>
-								<p class="colorlib-social-icons">
-									<a href="#"  ><i class="icon-facebook"></i></a>
-								
-									<a href="#"><i class="icon-google"></i></a>
-									
-								</p>
+			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-pb-sm">
+							<div class="row">
+								<div class="col-md-10">
+									<h2>Hãy trò chuyện</h2>
+									<p style="color: rgb(67, 65, 65);">Đôi khi, những thay đổi nhỏ nhất có thể tạo ra sự khác biệt lớn nhất.</p>
+									<?php
+										echo "<p><a href='#' style='color: black'>$email</a></p>";
+									?>
+									<p class="colorlib-social-icons">
+									<?php
+										echo "<a href='$facebook'><i class='icon-facebook'></i></a>";
+										echo "<a href='$linkedin'><i class='icon-linkedin'></i></a>";
+									?>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-pb-sm">
-						<h2>Thông Tin Người Làm Website</h2>
-						<div class="f-entry">
-							<a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
-							<div class="desc">
-								<span>Địa chỉ</span>
-								<h3><a href="#">47, đường số 8, Quận 9, TP HCM</a></h3>
+						<div class="col-md-6 col-pb-sm">
+							<h2>Thông Tin Người Làm Website</h2>
+							<div class="f-entry">
+								<a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
+								<div class="desc">
+									<span>Địa chỉ</span>
+									<?php
+										echo "<h3>{$address}</h3>";
+									?>
+								</div>
+							</div>
+							<div class="f-entry">
+								<a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
+								<div class="desc">
+									<span>Số Điện thoại</span>
+									<?php
+										echo "<h3>{$phone}</h3>";
+									?>
+								</div>
 							</div>
 						</div>
-						<div class="f-entry">
-							<a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
-							<div class="desc">
-								<span>Số Điện thoại</span>
-								<h3><a href="#">2374691382</a></h3>
-							</div>
-						</div>
-						<div class="f-entry">
-							<a href="#" class="featured-img" style="background-image: url(images/img-3.jpg);"></a>
-							<div class="desc">
-								<span>Kênh YouTuBe</span>
-								<h3><a href="#"></a>WebDinhCaoChannel</h3>
-							</div>
-						</div>
-					</div>
-					
-					
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<p style="color: black;">
-							&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						
+						
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<p style="color: black;">
+								&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chúc bạn một ngày vui vẻ <i class="icon-heart4" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank"></a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
+		</footer>
 
 
 <script>

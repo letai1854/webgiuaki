@@ -58,7 +58,7 @@ else if(isset($_POST['submit_update'])){
 			$again = true;
 	} 
 	else{		
-	$result = Detail::update_subject($id,$name,$des,$pic,$file);
+		$result = Detail::update_subject($id,$name,$des,$pic,$file);
 		if ($result == true) {
 			echo "<script>alert('Sửa thành công!');</script>";
 		} else {
@@ -68,9 +68,14 @@ else if(isset($_POST['submit_update'])){
 	}
 }
 
-
-
-
+if(isset($_SESSION['username'])) {
+	$info = User::get_info($_SESSION['username']);
+	$email = $info[0]['email'];
+	$address = $info[0]['address'];
+	$phone = $info[0]['phone'];
+	$facebook = $info[0]['facebook'];
+	$linkedin = $info[0]['linkedin'];
+} 
 
 
 ?>
@@ -275,7 +280,7 @@ else if(isset($_POST['submit_update'])){
 		</div>
 
 		<footer>
-			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575); margin-top:100px;">
+			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-pb-sm">
@@ -283,12 +288,14 @@ else if(isset($_POST['submit_update'])){
 								<div class="col-md-10">
 									<h2>Hãy trò chuyện</h2>
 									<p style="color: rgb(67, 65, 65);">Đôi khi, những thay đổi nhỏ nhất có thể tạo ra sự khác biệt lớn nhất.</p>
-									<p><a href="#" style="color: black">DzoanXuanThanh@gmal.com</a></p>
+									<?php
+										echo "<p><a href='#' style='color: black'>$email</a></p>";
+									?>
 									<p class="colorlib-social-icons">
-										<a href="#"  ><i class="icon-facebook"></i></a>
-									
-										<a href="#"><i class="icon-google"></i></a>
-										
+									<?php
+										echo "<a href='$facebook'><i class='icon-facebook'></i></a>";
+										echo "<a href='$linkedin'><i class='icon-linkedin'></i></a>";
+									?>
 									</p>
 								</div>
 							</div>
@@ -299,21 +306,18 @@ else if(isset($_POST['submit_update'])){
 								<a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
 								<div class="desc">
 									<span>Địa chỉ</span>
-									<h3><a href="#">47, đường số 8, Quận 9, TP HCM</a></h3>
+									<?php
+										echo "<h3>{$address}</h3>";
+									?>
 								</div>
 							</div>
 							<div class="f-entry">
 								<a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
 								<div class="desc">
 									<span>Số Điện thoại</span>
-									<h3><a href="#">2374691382</a></h3>
-								</div>
-							</div>
-							<div class="f-entry">
-								<a href="#" class="featured-img" style="background-image: url(images/img-3.jpg);"></a>
-								<div class="desc">
-									<span>Kênh YouTuBe</span>
-									<h3><a href="#"></a>WebDinhCaoChannel</h3>
+									<?php
+										echo "<h3>{$phone}</h3>";
+									?>
 								</div>
 							</div>
 						</div>
@@ -323,8 +327,8 @@ else if(isset($_POST['submit_update'])){
 						<div class="col-md-12 text-center">
 							<p style="color: black;">
 								&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chúc bạn một ngày vui vẻ <i class="icon-heart4" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank"></a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chúc bạn một ngày vui vẻ <i class="icon-heart4" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank"></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
 						</div>
 					</div>

@@ -1,4 +1,5 @@
 <?php 
+require_once("entities/account.php");
 session_start();
 if(isset($_SESSION['username'])){
 	$owner=true;
@@ -7,6 +8,16 @@ else{
 	$owner=false;
 }
 
+if(isset($_SESSION['username'])) {
+	$info = User::get_info($_SESSION['username']);
+	$name = $info[0]['name'];
+	$integram = $info[0]['integram'];
+	$email = $info[0]['email'];
+	$address = $info[0]['address'];
+	$phone = $info[0]['phone'];
+	$facebook = $info[0]['facebook'];
+	$linkedin = $info[0]['linkedin'];
+} 
 
 ?>
 
@@ -164,18 +175,20 @@ else{
 							<div class="col-md-4 animate-box">
 								<h3>Thông tin </h3>
 								<ul class="contact-info">
-									<li><span><i class="icon-map5"></i></span>123/45 Quận 9 TP HCM</li>
-									<li><span><i class="icon-phone4"></i></span>24352345</li>
-									<li><span><i class="icon-envelope2"></i></span><a href="#">DzoanXuanThanh@gmail.com</a></li>
+									<?php
+										echo "<li><span><i class='icon-map5'></i></span>{$address}</li>";
+										echo "<li><span><i class='icon-phone4'></i></span>{$phone}</li>";
+										echo "<li><span><i class='icon-envelope2'></i></span><a href='#'>{$email}</a></li>"
+									?>
 								</ul>
 							</div>
 							<div class="col-md-4 animate-box">
 								<h3>Mạng xã hội</h3>
 								<ul class="contact-info">
-								<li><span><i class="fab fa-facebook"></i></span><a href="#">Facebook</a></li>
-								<li><span><i class="fab fa-instagram"></i></span><a href="#">Instagram</a></li>
-								<li><span><i class="fab fa-linkedin"></i></span><a href="#">LinkedIn</a></li>
-
+									<?php
+										echo "<li><span><i class='fab fa-facebook'></i></span><a href='$facebook'>Facebook</a></li>";
+										echo "<li><span><i class='fab fa-linkedin'></i></span><a href='$linkedin'>LinkedIn</a></li>";
+									?>
 								</ul>
 							</div>
 							<div class="col-md-4 animate-box">
@@ -204,12 +217,14 @@ else{
 								<div class="col-md-10">
 									<h2>Hãy trò chuyện</h2>
 									<p style="color: rgb(67, 65, 65);">Đôi khi, những thay đổi nhỏ nhất có thể tạo ra sự khác biệt lớn nhất.</p>
-									<p><a href="#" style="color: black">DzoanXuanThanh@gmal.com</a></p>
+									<?php
+										echo "<p><a href='#' style='color: black'>$email</a></p>";
+									?>
 									<p class="colorlib-social-icons">
-										<a href="#"  ><i class="icon-facebook"></i></a>
-									
-										<a href="#"><i class="icon-google"></i></a>
-										
+									<?php
+										echo "<a href='$facebook'><i class='icon-facebook'></i></a>";
+										echo "<a href='$linkedin'><i class='icon-linkedin'></i></a>";
+									?>
 									</p>
 								</div>
 							</div>
@@ -220,21 +235,18 @@ else{
 								<a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
 								<div class="desc">
 									<span>Địa chỉ</span>
-									<h3><a href="#">47, đường số 8, Quận 9, TP HCM</a></h3>
+									<?php
+										echo "<h3>{$address}</h3>";
+									?>
 								</div>
 							</div>
 							<div class="f-entry">
 								<a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
 								<div class="desc">
 									<span>Số Điện thoại</span>
-									<h3><a href="#">2374691382</a></h3>
-								</div>
-							</div>
-							<div class="f-entry">
-								<a href="#" class="featured-img" style="background-image: url(images/img-3.jpg);"></a>
-								<div class="desc">
-									<span>Kênh YouTuBe</span>
-									<h3><a href="#"></a>WebDinhCaoChannel</h3>
+									<?php
+										echo "<h3>{$phone}</h3>";
+									?>
 								</div>
 							</div>
 						</div>
@@ -244,8 +256,8 @@ else{
 						<div class="col-md-12 text-center">
 							<p style="color: black;">
 								&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chúc bạn một ngày vui vẻ <i class="icon-heart4" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank"></a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chúc bạn một ngày vui vẻ <i class="icon-heart4" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank"></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
 						</div>
 					</div>
