@@ -4,13 +4,13 @@ require_once("entities/account.php");
 
 session_start();
 if(isset($_SESSION['username'])){
+	$owner=true;
+}
+if(isset($_SESSION['username'])){
 	$email=$_SESSION['username'];
 }
 if($email===""){
 	$error_message="không thể thêm tài liệu";
-}
-if(isset($_SESSION['username'])){
-	$owner=true;
 }
 $id=User::get_id($email);
 if(!isset($id)){
@@ -29,22 +29,21 @@ if(isset($_POST['enter'])){
 	$detailName=$_POST['detailName'];
 	$txt_image=$_FILES['txt_image'];
 	$txt_file=$_FILES['txt_file'];
-	if (!$subjectName || !$detailName || !$txt_image || !$txt_file) {
-		echo '<script>alert("Vui lòng nhập đầy đủ thông tin.");</script>';
-	} 
-	else{
+	// if (!$subjectName || !$detailName || !$txt_image || !$txt_file) {
+	// 	echo '<script>alert("Vui lòng nhập đầy đủ thông tin.");</script>';
+	// } 
+	// else{
 	$newDetail= new Detail($subjectName,$detailName,$txt_image,$txt_file,$id);
 	$result=$newDetail->save();
 	if(isset($result)){
 		if(!$result){
 			echo '<script>alert("không thêm được!")</script>';
+			$again = true;
 		}
 		else{
 			echo '<script>alert("Thêm thành công!")</script>';
-		
-				$again = true;
 			
-		}
+		// }
 	
 	}
 	}
@@ -55,7 +54,7 @@ else if(isset($_POST['submit_update'])){
 	$des = $_POST['detailName'];
 	$pic = $_FILES['txt_image'];
 	$file = $_FILES['txt_file'];
-	if ($name===""  || $des==="" || $pic==="" || $file==="") {
+	if ($name===""  || $des==="" || $pic=="" || $file=="") {
 			
 			echo '<script>alert("Vui lòng nhập đầy đủ thông tin.");</script>';
 			$update = true;
@@ -71,9 +70,7 @@ else if(isset($_POST['submit_update'])){
 		}
 	}
 }
-else{
-	$owner=false;
-}
+
 
 
 
@@ -236,7 +233,7 @@ else{
 		<div class="container">
 			<div class="body-form row justify-content-center">
 				<div class="col-md-6">
-					<form action="" class="border p-3 rounded " id="login" method="post" enctype="multipart/form-data">
+					<form action="" class="border p-3 rounded " id="login" method="post" enctype="multipart/form-data" onsubmit="return validate()">
 						<div class="form-group">
 							<label for="subjectName">Tên môn học</label>
 							<input type="text" class="form-control mt-1 mb-1" id="subjectName" placeholder="Nhập tên môn học" name="subjectName" value="<?php if (isset($again)) echo $name;
@@ -267,6 +264,7 @@ else{
                         echo "<p class='errorMessage my-3'>$error_message</p>";
                     		}
                     	?>
+						<div class="d-none errorMessage my-3"></div>
 						<button class="btnLogin mt-2 login" type="submit" class="btn" name="<?php echo isset($update) ? 'submit_update" value="' . htmlspecialchars($subject_update[0]['subjectCode']) . '">Sửa' : 'enter">Thêm'; ?>
 </button>
 
@@ -338,7 +336,55 @@ else{
 		</footer>
 	
 	</div>
+	<script>
+        function showError(message){
+          let  error=document.querySelector('.errorMessage');
+            if(message ==null || message==undefined){
+                if(!error.classList.contains('d-none')){
+                    error.classList.add('d-none')
+                }
+            }
+            else{
+                error.classList.remove('d-none');
+                error.innerHTML=message;
+                
+            }
+        }
 
+        function validate(){
+			var name= document.querySelector('#subjectName').value;
+			var detail= document.querySelector('#detailName').value;
+           var file= document.querySelector('#txt_file').value;
+           var image =document.querySelector('#txt_image').value;
+            var isvalid=true;
+			if(name===""){
+                showError('Vui lòng chọn tệp');
+                isvalid=false;
+                return false;
+            }
+			if(detail===""){
+                showError('Vui lòng chọn tệp');
+                isvalid=false;
+                return false;
+            }
+			if(image===""){
+				showError('Vui lòng chọn ảnh');
+				isvalid=false;
+				return false;
+			}
+            if(file===""){
+                showError('Vui lòng chọn tệp');
+                isvalid=false;
+                return false;
+            }
+            if(isvalid){
+                document.getElementById("login").submit();
+            }
+
+        }
+
+
+    </script>
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->

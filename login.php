@@ -78,6 +78,7 @@ if (isset($_POST['btnlogin'])) {
 </head>
 <body>
     <div class="container">
+    <a href="index.php" class="login-link" style="color: rgb(200, 210, 219); color:aqua; font-size:1.8rem; text-decoration:none;">Home</a>
         <h3 class="mt-5 mb-3 text-center  titleLogin">Đăng nhập</h3>
         <div class="body-form row justify-content-center">
             <div class="col-md-6">

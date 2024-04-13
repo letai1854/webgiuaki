@@ -95,7 +95,7 @@ try {
 					<div class="col-md-12">
 						<ul>
 							<li><a href="login.php" class="login-link" style="color: rgb(200, 210, 219);">Đăng nhập</a></li>
-							<li class="active"><a href="index.html" style="color: rgb(200, 210, 219);">Giới thiệu</a></li>
+							<li ><a href="index.php" class="active"><a href="index.html" style="color: rgb(200, 210, 219);">Giới thiệu</a></li>
 							<li><a href="services.php"style="color: rgb(200, 210, 219);">Tài liệu</a></li>
 							<?php 
 							if($owner){
