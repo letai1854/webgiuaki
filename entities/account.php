@@ -38,19 +38,46 @@ public static function get_username($id, $code)
         return false;
     }
 }
-public static function get_id($username){
+
+public static function get_info($userName) {
     try {
-    $db=new Db();
-    $sql="SELECT * FROM Login WHERE username='$username';";
-    $result = $db->select_to_array($sql);
-    $result = $result[0]['id'];
-    return $result;
+        $db = new Db();
+        $sql = "SELECT * FROM Login Where username = '{$userName}'";
+        $result = $db->select_to_array($sql);
+        return $result;
     }
     catch (PDOException $e) {
         return false;
     }
 }
+
+public static function update_info($teacherName, $linkedin, $integram, $address, $email, $phone, $facebook) {
+    try {
+        $db = new Db();
+        $sql = "CALL UpdateInfo('$teacherName', '$linkedin', '$integram', '$address', '$email', '$phone', '$facebook');";
+        $db->query_execute(($sql));
+        return true;
+    }
+    catch (PDOException $e) {
+        return false;
+    }
 }
+
+public static function get_id($username){
+    try {
+        $db=new Db();
+        $sql="SELECT * FROM Login WHERE username='$username';";
+        $result = $db->select_to_array($sql);
+        $result = $result[0]['id'];
+        return $result;
+        }
+        catch (PDOException $e) {
+            return false;
+        }
+    }
+}
+
+
 
 
 

@@ -9,7 +9,60 @@ if(isset($_SESSION['username'])){
 else{
 	$owner=false;
 }
+if (isset($_SESSION['username'])) {
+	$email = $_SESSION['username'];
+}
+if ($email===""){
+	$error_message="không thể cập nhật thông tin";
+}
+$id=User::get_id($email);
+if (!isset($id)){
+	$error_message="không thể cập nhật thông tin";
+}
+if (isset($_POST['Update'])) {
+	$name = $_POST['name'];
+	$linkedin = $_POST['linkedin'];
+	$integram = $_POST['integram'];
+	$address = $_POST['address'];
+	$email = $_POST['email'];
+	$phone = $_POST['phone'];
+	$facebook = $_POST['facebook'];
 
+	if (!empty($name) && !empty($linkedin) && !empty($integram) && !empty($address) 
+	&& !empty($email) && !empty($phone) && !empty($facebook)) {
+		$result = User::update_info($name, $linkedin, $integram, $address, $email, $phone, $facebook);;
+		if ($result == true) {
+			echo "<script>alert('Sửa thành công!');</script>";
+		} else {
+			echo "<script>alert('Sửa thất bại!');</script>";
+			$again = true;
+		}
+	}
+	else {
+		echo '<script>alert("Bạn cần nhập đầy đủ dữ liệu")</script>';
+	}
+
+	if(isset($_SESSION['username'])) {
+		$info = User::get_info($_SESSION['username']);
+		$email = $info[0]['email'];
+		$address = $info[0]['address'];
+		$phone = $info[0]['phone'];
+		$facebook = $info[0]['facebook'];
+		$linkedin = $info[0]['linkedin'];
+	} 
+	
+}
+
+if(isset($_SESSION['username'])) {
+	$info = User::get_info($_SESSION['username']);
+	$email = $info[0]['email'];
+	$address = $info[0]['address'];
+	$phone = $info[0]['phone'];
+	$facebook = $info[0]['facebook'];
+	$linkedin = $info[0]['linkedin'];
+
+	print($facebook);
+} 
 
 ?>
 <!DOCTYPE HTML>
@@ -170,10 +223,9 @@ else{
 							<div class="row">
 								
 								<div class="col-md-7 col-md-push-1 animate-box">
-									<form action="" class="border p-3 rounded " id="login">
+									<form action="" class="border p-3 rounded " id="login" method="post">
 									<div class="row">
 										<div class="col-md-6">
-
 											<div class="form-group">
 												<input type="text" class="form-control" name="name" placeholder="Tên giảng viên">
 											</div>
@@ -207,7 +259,7 @@ else{
 										<div class="col-md-6">
 											
 											<div class="form-group">
-												<input type="text" class="form-control" class="" placeholder="Link facebook">
+												<input type="text" class="form-control" name="facebook" placeholder="Link facebook">
 											</div>
 										</div>
 										
@@ -225,7 +277,8 @@ else{
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<button class="btnLogin mt-2 login" type="submit" class="btn" onclick="LoginSubmit(event)" >Cập nhật</button>
+												<!-- <button class="btnLogin mt-2 login" type="submit" class="btn" onclick="LoginSubmit(event)" name = "Update">Cập nhật</button> -->
+												<button class="btnLogin mt-2 login" type="submit" class="btn" name = "Update">Cập nhật</button>
 											</div>
 										</div>
 										
@@ -238,60 +291,61 @@ else{
 				</div>
 			</div>
 			<footer>
-				<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6 col-pb-sm">
-								<div class="row">
-									<div class="col-md-10">
-										<h2>Hãy trò chuyện</h2>
-										<p style="color: rgb(67, 65, 65);">Đôi khi, những thay đổi nhỏ nhất có thể tạo ra sự khác biệt lớn nhất.</p>
-										<p><a href="#" style="color: black">DzoanXuanThanh@gmal.com</a></p>
-										<p class="colorlib-social-icons">
-											<a href="#"  ><i class="icon-facebook"></i></a>
-											<a href="#"><i class="icon-google"></i></a>
-										</p>
-									</div>
+			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-pb-sm">
+							<div class="row">
+								<div class="col-md-10">
+									<h2>Hãy trò chuyện</h2>
+									<p style="color: rgb(67, 65, 65);">Đôi khi, những thay đổi nhỏ nhất có thể tạo ra sự khác biệt lớn nhất.</p>
+									<?php
+										echo "<p><a href='#' style='color: black'>$email</a></p>";
+									?>
+									<p class="colorlib-social-icons">
+									<?php
+										echo "<a href='$facebook'><i class='icon-facebook'></i></a>";
+										echo "<a href='$linkedin'><i class='icon-linkedin'></i></a>";
+									?>
+									</p>
 								</div>
 							</div>
-							<div class="col-md-6 col-pb-sm">
-								<h2>Thông Tin Người Làm Website</h2>
-								<div class="f-entry">
-									<a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
-									<div class="desc">
-										<span>Địa chỉ</span>
-										<h3><a href="#">47, đường số 8, Quận 9, TP HCM</a></h3>
-									</div>
-								</div>
-								<div class="f-entry">
-									<a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
-									<div class="desc">
-										<span>Số Điện thoại</span>
-										<h3><a href="#">2374691382</a></h3>
-									</div>
-								</div>
-								<div class="f-entry">
-									<a href="#" class="featured-img" style="background-image: url(images/img-3.jpg);"></a>
-									<div class="desc">
-										<span>Kênh YouTuBe</span>
-										<h3><a href="#"></a>WebDinhCaoChannel</h3>
-									</div>
+						</div>
+						<div class="col-md-6 col-pb-sm">
+							<h2>Thông Tin Người Làm Website</h2>
+							<div class="f-entry">
+								<a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
+								<div class="desc">
+									<span>Địa chỉ</span>
+									<?php
+										echo "<h3>{$address}</h3>";
+									?>
 								</div>
 							</div>
-							
-							
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<p style="color: black;">
-									&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-		Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chúc bạn một ngày vui vẻ <i class="icon-heart4" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank"></a>
-		<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								</p>
+							<div class="f-entry">
+								<a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
+								<div class="desc">
+									<span>Số Điện thoại</span>
+									<?php
+										echo "<h3>{$phone}</h3>";
+									?>
+								</div>
 							</div>
+						</div>
+						
+						
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<p style="color: black;">
+								&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Chúc bạn một ngày vui vẻ <i class="icon-heart4" aria-hidden="true"></i> <a href="https://colorlib.com" target="_blank"></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
 						</div>
 					</div>
 				</div>
-			</footer>
+			</div>
+		</footer>
 		
 		</div>
 	
