@@ -3,6 +3,7 @@ require_once("config/db.class.php");
 class Detail{
 
 
+
 public $subjectName;
 public $subjectDescribe;
 public $image;
