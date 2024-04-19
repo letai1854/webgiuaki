@@ -1,4 +1,5 @@
 <?php 
+require_once('entities/account.php');
 session_start();
 if(isset($_SESSION['username'])){
 	$owner=true;
@@ -6,6 +7,17 @@ if(isset($_SESSION['username'])){
 else{
 	$owner=false;
 }
+
+if(isset($_SESSION['username'])) {
+	$info = User::get_info($_SESSION['username']);
+	$name = $info[0]['name'];
+	$integram = $info[0]['integram'];
+	$email = $info[0]['email'];
+	$address = $info[0]['address'];
+	$phone = $info[0]['phone'];
+	$facebook = $info[0]['facebook'];
+	$linkedin = $info[0]['linkedin'];
+} 
 
 ?>
 
@@ -70,8 +82,6 @@ else{
 			body{
 				background-color: rgba(193, 150, 49, 0.575);
 			}
-			
-		
 		</style>
 	</head>
 	<body>
@@ -152,10 +162,18 @@ else{
 						<div class="about-desc">
 							<div class="owl-carousel3">
 								<div class="item">
-									<h2 ><span >Dzoãn</span><span>Xuân Thanh</span></h2>
+									<h2 >
+									<?php
+										echo "<span>{$name}</span>"
+									?>
+									</h2>
 								</div>
 								<div class="item">
-									<h2><span>Tôi</span><span>Là một giảng viên</span></h2>
+									<h2>
+									<?php
+										echo "<span>{$integram}</span>"
+									?>
+									</h2>
 								</div>
 							</div>
 							<div class="desc">
@@ -240,11 +258,7 @@ else{
 			</div>
 		</div>
 
-		
 
-	
-
-		
 
 		<footer>
 			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
@@ -255,12 +269,14 @@ else{
 								<div class="col-md-10">
 									<h2>Hãy trò chuyện</h2>
 									<p style="color: rgb(67, 65, 65);">Đôi khi, những thay đổi nhỏ nhất có thể tạo ra sự khác biệt lớn nhất.</p>
-									<p><a href="#" style="color: black">DzoanXuanThanh@gmal.com</a></p>
+									<?php
+										echo "<p><a href='#' style='color: black'>$email</a></p>";
+									?>
 									<p class="colorlib-social-icons">
-										<a href="#"  ><i class="icon-facebook"></i></a>
-									
-										<a href="#"><i class="icon-google"></i></a>
-										
+									<?php
+										echo "<a href='$facebook'><i class='icon-facebook'></i></a>";
+										echo "<a href='$linkedin'><i class='icon-linkedin'></i></a>";
+									?>
 									</p>
 								</div>
 							</div>
@@ -271,21 +287,18 @@ else{
 								<a href="#" class="featured-img" style="background-image: url(images/img-1.jpg);"></a>
 								<div class="desc">
 									<span>Địa chỉ</span>
-									<h3><a href="#">47, đường số 8, Quận 9, TP HCM</a></h3>
+									<?php
+										echo "<h3>{$address}</h3>";
+									?>
 								</div>
 							</div>
 							<div class="f-entry">
 								<a href="#" class="featured-img" style="background-image: url(images/img-2.jpg);"></a>
 								<div class="desc">
 									<span>Số Điện thoại</span>
-									<h3><a href="#">2374691382</a></h3>
-								</div>
-							</div>
-							<div class="f-entry">
-								<a href="#" class="featured-img" style="background-image: url(images/img-3.jpg);"></a>
-								<div class="desc">
-									<span>Kênh YouTuBe</span>
-									<h3><a href="#"></a>WebDinhCaoChannel</h3>
+									<?php
+										echo "<h3>{$phone}</h3>";
+									?>
 								</div>
 							</div>
 						</div>
