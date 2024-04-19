@@ -128,11 +128,12 @@ if(isset($_SESSION['username'])) {
             font-size: 14px;
         }
 			#login{
-			border: 3px solid  rgb(189, 158, 65);
+			border: 3px solid  rgb(49 177 171);
 			padding: 6px 8px;
-			background-color: rgba(156, 141, 96, 0.5); 
+			background-color: rgb(30 126 120 / 50%); 
             position: relative;
 			border-radius: 4px ;
+			margin-bottom: 100px;
 			}
 			.btnLogin{
 				margin-top: 4px;
@@ -152,7 +153,7 @@ if(isset($_SESSION['username'])) {
 				height: 130px;
 			}
 			body{
-				background-color: rgba(193, 150, 49, 0.575);
+				background-color: #73CFCF	;
 			}
 		</style>
 	<!-- Modernizr JS -->
@@ -165,7 +166,7 @@ if(isset($_SESSION['username'])) {
 	</head>
 	<body>
 
-		<nav id="colorlib-main-nav" role="navigation" style="background-color: rgba(135, 96, 12, 0.575);;">
+		<nav id="colorlib-main-nav" role="navigation" style="background-color: #004949;;">
 	
 			<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
 			<div class="js-fullheight colorlib-table">
@@ -221,12 +222,12 @@ if(isset($_SESSION['username'])) {
 		<div id="colorlib-work">
 			<div class="container">
 				<div class="row text-center">
-					<h2 class="bold" style="color: rgba(148, 154, 71, 0.495);"> <?php if (isset($update)) echo 'Sửa Tài Liệu'; else echo 'Thêm Tài Liệu'?></h2>
+					<h2 class="bold" style="color:#C4E9E9"> <?php if (isset($update)) echo 'Sửa Tài Liệu'; else echo 'Thêm Tài Liệu'?></h2>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-md-offset-0 text-center animate-box intro-heading">
-						<span  style="color: rgba(67, 70, 16, 0.874)">Giảng Viên</span>
-						<h2 style="color: rgba(67, 70, 16, 0.874)"><?php if (isset($update)) echo 'Sửa Tài Liệu'; else echo 'Thêm Tài Liệu'?></h2>
+						<span  style="color: #006262;">Giảng Viên</span>
+						<h2 style="color: #006262;"><?php if (isset($update)) echo 'Sửa Tài Liệu'; else echo 'Thêm Tài Liệu'?></h2>
 					</div>
 				</div>
 				
@@ -280,7 +281,7 @@ if(isset($_SESSION['username'])) {
 		</div>
 
 		<footer>
-			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
+			<div id="footer" style="background-color: #006262; ;">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-pb-sm">

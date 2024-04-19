@@ -35,7 +35,7 @@ if(isset($_SESSION['username'])) {
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Noah Template</title>
+	<title>Giảng viên</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -89,13 +89,13 @@ if(isset($_SESSION['username'])) {
 				height: 130px;
 			}
 			body{
-				background-color: rgba(193, 150, 49, 0.575);
+				background-color: #73CFCF	;
 			}
 		</style>
 	</head>
 	<body>
 
-	<nav id="colorlib-main-nav" role="navigation" style="background-color: rgba(135, 96, 12, 0.575);;">
+	<nav id="colorlib-main-nav" role="navigation" style="background-color: #004949;">
 	
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
 		<div class="js-fullheight colorlib-table">
@@ -104,7 +104,7 @@ if(isset($_SESSION['username'])) {
 					<div class="col-md-12">
 						<ul>
 							<li><a href="login.php" class="login-link" style="color: rgb(200, 210, 219);">Đăng nhập</a></li>
-							<li ><a href="index.php" class="active"><a href="index.html" style="color: rgb(200, 210, 219);">Giới thiệu</a></li>
+							<li ><a href="index.php" class="active" style="color: rgb(200, 210, 219);">Giới thiệu</a></li>
 							<li><a href="services.php"style="color: rgb(200, 210, 219);">Tài liệu</a></li>
 							<?php 
 							if($owner){
@@ -151,7 +151,7 @@ if(isset($_SESSION['username'])) {
 		<div id="colorlib-services">
 			<div class="container">
 				<div class="row text-center">
-					<h2 class="bold" style="color: rgba(148, 154, 71, 0.495);">Tài Liệu</h2>
+					<h2 class="bold" style="color:#C4E9E9">Tài Liệu</h2>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -159,8 +159,8 @@ if(isset($_SESSION['username'])) {
 							<div class="one-third">
 								<div class="row">
 									<div class="col-md-12 col-md-offset-0 animate-box intro-heading">
-										<span style="color: rgba(67, 70, 16, 0.874)">Tài Liệu Của Tôi</span>
-										<h2 style="color: rgba(67, 70, 16, 0.874)">Tổng Hợp Môn Học</h2>
+										<span style="color: #006262;">Tài Liệu Của Tôi</span>
+										<h2 style="color: #006262;">Tổng Hợp Môn Học</h2>
 									</div>
 								</div>
 								<div class="row">
@@ -178,7 +178,7 @@ if(isset($_SESSION['username'])) {
 													if (is_array($list_subject)) {
 														foreach ($list_subject as $item) {
 															echo '
-															<div class="col" style="margin-bottom: 20px; border-radius: 3px; border: 2px solid rgba(201, 197, 190, 0.337); padding: 10px; background-color: rgba(116, 83, 7, 0.575);">
+															<div class="col" style="margin-bottom: 20px; border-radius: 3px; border: 2px solid rgba(201, 197, 190, 0.337); padding: 10px; background-color: #009393;">
 																<h3 style="color: rgb(184, 68, 26);">' . htmlspecialchars($item['subjectName']) . '</h3>
 																<div class="card shadow-sm">
 																	<img src="' . htmlspecialchars($item['image']) . '" alt="" style="width:100%; height:300px">
@@ -239,7 +239,7 @@ if(isset($_SESSION['username'])) {
 
 	
 	<footer>
-			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
+			<div id="footer" style="background-color: #006262; ">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-pb-sm">

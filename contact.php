@@ -26,7 +26,7 @@ if(isset($_SESSION['username'])) {
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Noah Template</title>
+	<title>Giảnh viên</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -91,13 +91,12 @@ if(isset($_SESSION['username'])) {
 		height: 130px;
 	}
 	body{
-		background-color: rgba(193, 150, 49, 0.575);
-	}
+		background-color: #73CFCF	;	}
 </style>
 	</head>
 	<body>
 
-		<nav id="colorlib-main-nav" role="navigation" style="background-color: rgba(135, 96, 12, 0.575);;">
+		<nav id="colorlib-main-nav" role="navigation" style="background-color: #004949;;">
 	
 			<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
 			<div class="js-fullheight colorlib-table">
@@ -154,18 +153,18 @@ if(isset($_SESSION['username'])) {
 		<div id="colorlib-contact">
 			<div class="container">
 				<div class="row text-center">
-					<h2 class="bold" style="color: rgba(148, 154, 71, 0.495);">Liên Hệ </h2>
+					<h2 class="bold" style="color:#C4E9E9">Liên Hệ </h2>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-md-offset-0 text-center animate-box intro-heading">
-						<span style="color: rgba(67, 70, 16, 0.874)">Thông tin</span>
-						<h2 style="color: rgba(67, 70, 16, 0.874)">Liên Hệ</h2>
+						<span style="color: #006262;">Thông tin</span>
+						<h2 style="color:#006262;">Liên Hệ</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="rotate">
-							<h2 class="heading" style="color: rgba(148, 154, 71, 0.495);">Liên Hệ</h2>
+							<h2 class="heading" style="color: aliceblue;">Liên Hệ</h2>
 						</div>
 					</div>
 				</div>
@@ -209,7 +208,7 @@ if(isset($_SESSION['username'])) {
 		</div>
 
 		<footer>
-			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
+			<div id="footer" style="background-color: #006262;">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-pb-sm">

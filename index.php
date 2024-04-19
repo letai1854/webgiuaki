@@ -80,13 +80,15 @@ if(isset($_SESSION['username'])) {
 			}
 			
 			body{
-				background-color: rgba(193, 150, 49, 0.575);
+				/* rgba(193, 150, 49, 0.575)  #00D2D2*/
+				background-color: #73CFCF	;
+			
 			}
 		</style>
 	</head>
 	<body>
 
-	<nav id="colorlib-main-nav" role="navigation" style="background-color: rgba(135, 96, 12, 0.575);;">
+	<nav id="colorlib-main-nav" role="navigation" style="background-color: #004949;">
 	
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
 		<div class="js-fullheight colorlib-table">
@@ -145,7 +147,8 @@ if(isset($_SESSION['username'])) {
 		<div id="colorlib-about">
 			<div class="container">
 				<div class="row text-center">
-					<h2 class="bold" style="color: rgba(148, 154, 71, 0.495);">Giới Thiệu</h2>
+				<!-- rgba(148, 154, 71, 0.495); -->
+					<h2 class="bold" style="color:#C4E9E9 ;">Giới Thiệu</h2>
 				</div>
 				<div class="row">
 					<div class="col-md-5 animate-box">
@@ -178,7 +181,7 @@ if(isset($_SESSION['username'])) {
 							</div>
 							<div class="desc">
 								<div class="rotate">
-									<h2 class="heading" style="color: rgba(148, 154, 71, 0.495);">Giới thiệu</h2>
+									<h2 class="heading" style="color: aliceblue ;">Giới thiệu</h2>
 								</div>
 								<p style="color: black;">Tôi là một giảng viên khoa công nghệ thông tin trường đại học Tôn Đức Thắng</p>
 
@@ -191,7 +194,7 @@ if(isset($_SESSION['username'])) {
 		<div id="colorlib-services">
 			<div class="container">
 				<div class="row text-center">
-					<h2 class="bold" style="color: rgba(148, 154, 71, 0.495);">Thông Tin Về Tôi</h2>
+					<h2 class="bold" style="color: #C4E9E9 ;">Thông Tin Về Tôi</h2>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -199,8 +202,8 @@ if(isset($_SESSION['username'])) {
 							<div class="one-third">
 								<div class="row">
 									<div class="col-md-12 col-md-offset-0 animate-box intro-heading">
-										<span style="color: rgba(67, 70, 16, 0.874)">Giới Thiệu</span>
-										<h2 style="color: rgba(67, 70, 16, 0.874)">Về Bản Thân Tôi</h2>
+										<span style="color: #006262;">Giới Thiệu</span>
+										<h2 style="color:#006262;">Về Bản Thân Tôi</h2>
 									</div>
 								</div>
 								<div class="row">
@@ -261,7 +264,8 @@ if(isset($_SESSION['username'])) {
 
 
 		<footer>
-			<div id="footer" style="background-color: rgba(193, 150, 49, 0.575);">
+		<!-- rgba(193, 150, 49, 0.575); -->
+			<div id="footer" style="background-color:#006262; ">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6 col-pb-sm">
