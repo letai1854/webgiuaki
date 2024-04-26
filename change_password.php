@@ -6,7 +6,7 @@
         $sql = "CALL change_password('$username', '$password');";
         $result = $db->query_execute($sql);
         if($result == true){
-            $db->query_execute("UPDATE recovery_pass SET checked = 1 WHERE username = '$username';");
+            $db->query_execute("UPDATE ReservePassword SET checked = 1 WHERE username = '$username';");
         }
         return true;
     }

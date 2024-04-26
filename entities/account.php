@@ -76,10 +76,4 @@ public static function get_id($username){
         }
     }
 }
-
-
-
-
-
-
 ?>
