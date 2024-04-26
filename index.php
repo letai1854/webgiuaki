@@ -8,16 +8,15 @@ else{
 	$owner=false;
 }
 
-if(isset($_SESSION['username'])) {
-	$info = User::get_info($_SESSION['username']);
-	$name = $info[0]['name'];
-	$integram = $info[0]['integram'];
-	$email = $info[0]['email'];
-	$address = $info[0]['address'];
-	$phone = $info[0]['phone'];
-	$facebook = $info[0]['facebook'];
-	$linkedin = $info[0]['linkedin'];
-} 
+
+$info = User::get_info('dzoanthanh@gmail.com');
+$name = $info[0]['name'];
+$integram = $info[0]['integram'];
+$email = $info[0]['email'];
+$address = $info[0]['address'];
+$phone = $info[0]['phone'];
+$facebook = $info[0]['facebook'];
+$linkedin = $info[0]['linkedin'];
 
 ?>
 
@@ -212,44 +211,13 @@ if(isset($_SESSION['username'])) {
 											<h2 class="heading" style="color: rgba(148, 154, 71, 0.495);">Thông Tin</h2>
 										</div>
 									</div>
-									<div class="col-md-6">
 										<div class="services animate-box">
-											<h3>1 - Graphic Design</h3>
-											<ul>
-												<li>UI Design</li>
-												<li>Website &amp; Digital Design</li>
-												<li>Brading &amp; Visual Identity</li>
-												<li>Print Design</li>
-											</ul>
-										</div>
-										<div class="services animate-box">
-											<h3>3 - Front End Development</h3>
-											<ul>
-												<li>HTML / CSS</li>
-												<li>JS &amp; Jquery Startup</li>
-												<li>WordPress</li>
-												<li>Jomla</li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="services animate-box">
-											<h3>2 - Illustration</h3>
-											<ul>
-												<li>Editorial</li>
-												<li>Narrative</li>
-												<li>Motion Graphics</li>
-												<li>Animation</li>
-												<li>Visual Effects</li>
-											</ul>
-										</div>
-										<div class="services animate-box">
-											<h3>4 - Web Marketing</h3>
-											<ul>
-												<li>Sales Marketing</li>
-												<li>Invoice</li>
-												<li>eCommerce</li>
-											</ul>
+											<h3>Giới thiệu</h3>
+											<h2>
+											<?php
+												echo "<span>{$integram}</span>"
+											?>
+											</h2>
 										</div>
 									</div>
 								</div>

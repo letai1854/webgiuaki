@@ -41,21 +41,20 @@ public static function list_Detail(){
     $sql ="SELECT * FROM Subject";
     $result=$db->select_to_array($sql);
     return $result;
-    }
+}
 
-    public static function delete_Subject($id){
-        $db= new Db();
-        $sql ="DELETE  FROM Subject Where subjectCode='$id'";
-        $result=$db->query_execute($sql);
+public static function delete_Subject($id){
+    $db= new Db();
+    $sql ="DELETE  FROM Subject Where subjectCode='$id'";
+    $result=$db->query_execute($sql);
     return $result;
-    }
-    public static function list_Subject_Update($id){
-        $db= new Db();
-        $sql ="SELECT * FROM Subject Where subjectCode=$id";
-        $result=$db->select_to_array($sql);
-        return $result;
-      
-        }   
+}
+public static function list_Subject_Update($id){
+    $db= new Db();
+    $sql ="SELECT * FROM Subject Where subjectCode=$id";
+    $result=$db->select_to_array($sql);
+    return $result;    
+}   
 
 
 

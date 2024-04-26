@@ -60,8 +60,6 @@ if(isset($_SESSION['username'])) {
 	$phone = $info[0]['phone'];
 	$facebook = $info[0]['facebook'];
 	$linkedin = $info[0]['linkedin'];
-
-	print($facebook);
 } 
 
 ?>
