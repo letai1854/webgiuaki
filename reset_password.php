@@ -7,7 +7,7 @@ function reset_password($username)
   $id = substr(md5($username), 0, 7);
   try {
     $db = new Db();
-    $sql = "CALL checkin_recovery('$username', '$id', '$code')";
+    $sql = "CALL checkRevival('$username', '$id', '$code')";
     $db->query_execute($sql);
   } catch (Exception $e) {
     return false;
